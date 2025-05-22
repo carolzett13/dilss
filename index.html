@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Minha Princesa Linda💕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1 id="titulo">Para a minha pessoa favorita 💖</h1>
+  <p id="mensagem-inicial">Clique no coração donzela!</p>
+  <button id="abrir-carta" onclick="abrirCarta()">💌</button>
+
+  <div id="carta" class="carta escondida">
+    <h2>Bilhetinhos para you Lidjane my love </h2>
+    <p id="texto-carta">
+      <br>Amor, você é o motivo dos meus sorrisos mais sinceros.<br>
+       Cada momento com você é como um sonho, e eu sou muito sortuda por te ter na minha vida. 💕
+      <br><br>
+      Quer ver algo mais daora? Dá uma clicada nos corações ai gatinha!
+    </p>
+
+    <div class="momentos">
+      <button onclick="mostrarMomento(1)">❤️</button>
+      <button onclick="mostrarMomento(2)">❤️</button>
+      <button onclick="mostrarMomento(3)">❤️</button>
+    </div>
+
+    <div id="galeria" class="galeria"></div>
+
+    <div class="carrossel" id="carrossel">
+      <img src="fotos/img_1.webp" class="ativo" alt="Foto 1">
+      <img src="fotos/img_2.jpg" alt="Foto 2">
+      <img src="fotos/img_3.jpg" alt="Foto 3">
+      <img src="fotos/img_4.jpg" alt="Foto 4">
+      <img src="fotos/img_5.webp" alt="Foto 5">
+      <img src="fotos/img_6.webp" alt="Foto 6">
+      <img src="fotos/img_7.webp" alt="Foto 7">
+      <img src="fotos/img_8.webp" alt="Foto 8">
+      <img src="fotos/specials.jpg" alt="Foto 9">
+      <div class="botoes-carrossel">
+        <button onclick="mudarSlide(-1)">❮</button>
+        <button onclick="mudarSlide(1)">❯</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function abrirCarta() {
+    const carta = document.getElementById('carta');
+    carta.classList.remove('escondida');
+    carta.style.display = 'block';  // ✅ Garantimos que vai aparecer
+
+    document.getElementById('abrir-carta').style.display = 'none';
+    document.getElementById('mensagem-inicial').style.display = 'none';
+  }
+
+  function mostrarMomento(numero) {
+    const galeria = document.getElementById('galeria');
+    let conteudo = '';
+
+    if (numero === 1) {
+      conteudo =`<p>
+           <br>Me apaixonei até pelas letras do seu nome,<br> 
+           <br>me apaixonei pelos seus olhos, pelo seu abraço aconchegante, pela sua voz<br>
+           <br>Me apaixonei completamente por você! 😍</p>`;
+    } else if (numero === 2) {
+      conteudo = `<p>
+          <br>Quando a gente se viu pela primeira vez eu não sabia nem aonde pôr as mãos<br>
+          <br>agora tudo mudou me acostumei contigo perto<br> 
+          <br>quando você vai pra longe não sei onde enfiar a cabeça</p>`;
+    } else if (numero === 3) {
+      conteudo = `<p>Meus olhos te adoram, mas foi a minha alma que se apaixonou por você! 💞</p>`;
+    }
+
+    galeria.innerHTML = conteudo;
+  }
+
+  function criarCoracao() {
+    let coracao = document.createElement('div');
+    coracao.innerHTML = '❤️';
+    coracao.style.position = 'absolute';
+    coracao.style.left = Math.random() * window.innerWidth + 'px';
+    coracao.style.top = Math.random() * window.innerHeight + 'px';
+    coracao.style.fontSize = '2em';
+    coracao.style.pointerEvents = 'none';
+    document.body.appendChild(coracao);
+    setTimeout(() => coracao.remove(), 2000);
+  }
+
+  // Corações automáticos ao carregar a página
+  setInterval(() => criarCoracao(), 500);
+
+  // Carrossel
+  let slideAtual = 0;
+  const slides = document.querySelectorAll('#carrossel img');
+
+  function mostrarSlide(n) {
+    slides.forEach(slide => slide.classList.remove('ativo'));
+    slideAtual = (n + slides.length) % slides.length;
+    slides[slideAtual].classList.add('ativo');
+  }
+
+  function mudarSlide(direcao) {
+    mostrarSlide(slideAtual + direcao);
+    reiniciarAutoSlide();
+  }
+
+  function autoSlide() {
+    mostrarSlide(slideAtual + 1);
+  }
+
+  let intervalo = setInterval(autoSlide, 3000);
+
+  function reiniciarAutoSlide() {
+    clearInterval(intervalo);
+    intervalo = setInterval(autoSlide, 3000);
+  }
+</script>
+</body>
+</html>

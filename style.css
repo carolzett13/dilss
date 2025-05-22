@@ -1,0 +1,123 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #ffeef0;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+#titulo {
+  font-size: 2em;
+  color: #d6336c;
+}
+
+#abrir-carta {
+  font-size: 2em;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.carta {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff0f6;
+  display: none;
+}
+
+.momentos button {
+  margin: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.galeria {
+  margin-top: 10px;
+  animation: fadeIn 1s ease-in;
+}
+
+.carrossel {
+  position: relative;
+  max-width: 300px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.carrossel img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: none;
+  border-radius: 15px;
+}
+
+.carrossel img.ativo {
+  display: block;
+}
+
+.botoes-carrossel {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.botoes-carrossel button {
+  background: rgba(255,255,255,0.7);
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.carta.escondida {
+  display: none;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+  #titulo {
+    font-size: 1.5em;
+  }
+
+  #abrir-carta {
+    font-size: 1.5em;
+  }
+
+  .momentos button {
+    font-size: 1.2em;
+    margin: 5px;
+  }
+
+  .carrossel {
+    max-width: 90%;
+  }
+
+  .carrossel img {
+    height: 150px;
+  }
+
+  .botoes-carrossel button {
+    font-size: 1.2em;
+    padding: 4px 8px;
+  }
+
+  .carta {
+    padding: 15px;
+  }
+}
